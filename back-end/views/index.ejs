@@ -11,15 +11,13 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
-      </tr>
-      <tr>
-        <td>Withdraw money.</td>
-        <td>Withdraw 1000 dollars to pay rent.</td>
-      </tr>
-      <tr>
-        <td>Send email to Oliver.</td>
-        <td>Send an email to Oliver about the trip to Brazil.</td>
-      </tr>
+      </tr>      
+      <% for(var i=0; i < tasks.length; i++) { %>
+        <tr>
+          <td><%= tasks[i].title %></td>
+          <td><%= tasks[i].description %></td>
+        </tr>
+      <% } %>
     </table>
 
     <button>Add New Task</button>
