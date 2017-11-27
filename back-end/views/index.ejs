@@ -7,13 +7,15 @@
   <body>
     <h1>Welcome to <%= title %></h1>
 
-    <p>Title: </p>
-    <input type="text"><br>
-
-    <p>Description: </p>
-    <input type="text"><br>
-
-    <button>Add New Task</button>
+    <form method='POST', action="/">
+      <p>Title: </p>
+      <input type='text' name='title'><br>
+  
+      <p>Description: </p>
+      <input type='text' name='description'><br>
+  
+      <button type='submit'>Add New Task</button>
+    </form>
 
     <table>
       <tr>

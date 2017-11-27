@@ -9,13 +9,28 @@ router.get('/', function(req, res, next) {
     if(err) {
       console.log(err);
     } else {
-      res.render('index', { 
+      res.render('index', {
         title: 'Angular Task Manager',
         tasks: tasks 
       });
     }
   });
+});
 
+router.post('/', function(req, res) {
+  var task = new Task();
+  task.title = req.body.title;
+  task.description = req.body.description;
+
+  task.save(function(err) {
+    if(err) {
+      console.log(err);
+      return;
+    } else {
+      console.log('Task successfully saved!')
+      res.redirect('/');
+    }
+  });
 });
 
 module.exports = router;
