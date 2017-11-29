@@ -1,35 +1,19 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#main-header {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-a {
-  color: #00B7FF;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width:50%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
-input {
+#title {
   margin-bottom: 10px;
-  width: 50%;
+  width: 100%;
 }
 
-button {
-  margin-top: 10px;
+#description {
   margin-bottom: 10px;
+  width: 100%;
+}
+
+#submit-button {
+  margin-bottom: 40px;
   padding: 5px;
 }
