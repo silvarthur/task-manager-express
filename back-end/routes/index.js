@@ -5,6 +5,7 @@ var Task = require('../models/task');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log('home');
   Task.find({}, function(err, tasks){
     if(err) {
       console.log(err);
@@ -14,6 +15,14 @@ router.get('/', function(req, res, next) {
         tasks: tasks 
       });
     }
+  });
+});
+
+router.get('/:id', function(req, res, next) {
+  Task.findById(req.params.id, function(err, task) {
+    res.render('task', {
+      title:'Task Details'
+    });
   });
 });
 
