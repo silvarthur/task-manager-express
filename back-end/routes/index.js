@@ -21,7 +21,9 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   Task.findById(req.params.id, function(err, task) {
     res.render('task', {
-      title:'Task Details'
+      title:'Task Details',
+      task_title: task.title,
+      task_description: task.description
     });
   });
 });
