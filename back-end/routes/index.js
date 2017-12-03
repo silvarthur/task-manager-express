@@ -18,21 +18,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-//EDIT TASK
-router.get('/:_id', function(req, res) {
-  Task.findById(req.params._id, function(err, task) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.render('task', {
-        title: 'Task Details',
-        task_title: task.title,
-        task_description: task.description
-      });
-    }
-  });
-});
-
+//ADD NEW TASK
 router.post('/', function(req, res) {
   var task = new Task();
   task.title = req.body.title;
@@ -43,7 +29,45 @@ router.post('/', function(req, res) {
       console.log(err);
       return;
     } else {
-      console.log('Task successfully saved!')
+      console.log('Task successfully saved!');
+      res.redirect('/');
+    }
+  });
+});
+
+//LOAD EDIT FORM
+router.get('/:_id', function(req, res) {
+  Task.findById(req.params._id, function(err, task) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.render('task', {
+        title: 'Task Details',
+        task_id: req.params._id,
+        task_title: task.title,
+        task_description: task.description
+      });
+    }
+  });
+});
+
+//EDIT TASK
+router.post('/:_id', function(req, res) {
+  console.log(req.body.title);
+  console.log(req.body.description);
+
+  var task = {};
+  task.title = req.body.title;
+  task.description = req.body.description;
+
+  var query = {_id: req.params._id};
+
+  Task.update(query, task, function(err) {
+    if(err) {
+      console.log(err);
+      return;
+    } else {
+      console.log('Task successfully edited!');
       res.redirect('/');
     }
   });
