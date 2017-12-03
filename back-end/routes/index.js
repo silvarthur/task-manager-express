@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
       console.log(err);
     } else {
       res.render('index', {
-        title: 'Angular Task Manager',
+        title: 'Express JS Task Manager',
         tasks: tasks 
       });
     }

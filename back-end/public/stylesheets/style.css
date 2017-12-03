@@ -3,12 +3,27 @@
   margin-bottom: 40px;
 }
 
-#title {
+#task-page-header {
+  margin-top: 40px;
+  margin-bottom: 40px; 
+}
+
+#title-field {
   margin-bottom: 10px;
   width: 100%;
 }
 
-#description {
+#description-field {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#title-edit-field {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#description-edit-field {
   margin-bottom: 10px;
   width: 100%;
 }
@@ -16,4 +31,12 @@
 #submit-button {
   margin-bottom: 40px;
   padding: 5px;
+}
+
+#confirm-button {
+  margin-right: 5px;
+}
+
+#cancel-button {
+  margin-right: 5px;
 }
