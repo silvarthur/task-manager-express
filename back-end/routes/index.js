@@ -3,7 +3,7 @@ var router = express.Router();
 
 var Task = require('../models/task');
 
-/* GET home page. */
+//GET HOME PAGE
 router.get('/', function(req, res, next) {
   console.log('home');
   Task.find({}, function(err, tasks){
@@ -18,13 +18,22 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/:id', function(req, res, next) {
-  Task.findById(req.params.id, function(err, task) {
-    res.render('task', {
-      title:'Task Details',
-      task_title: task.title,
-      task_description: task.description
-    });
+//EDIT TASK
+router.get('/:_id', function(req, res) {
+  Task.findById(req.params._id, function(err, task) {
+    console.log("***");
+    console.log(req.params._id);
+    console.log("***");
+
+    if(err) {
+      console.log(err);
+    } else {
+      res.render('task', {
+        title: 'Task Details',
+        task_title: task.title,
+        task_description: task.description
+      });
+    }
   });
 });
 
