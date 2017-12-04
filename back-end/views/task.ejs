@@ -12,12 +12,9 @@
     <form method='POST' action='/<%= task_id %>'>
       <input id='title-edit-field' type='text' name='title' class='form-control' value='<%= task_title %>'>
       <input id='description-edit-field' type='text' name='description' class='form-control' value='<%= task_description %>'>
-      
-      <div class='btn-group' role='group'>
-          <button id='confirm-button' type='submit' class='btn btn-primary'>Confirm</button>
-          <button id='cancel-button' class='btn btn-primary'>Cancel</button>
-          <button id='delete-task-button' type='submit' class='btn btn-danger'>Delete Task</button>
-      </div>
+
+      <button id='confirm-button' type='submit' class='btn btn-primary'>Confirm</button>
+      <button id='cancel-button' type='button' class='btn btn-primary'>Cancel</button>
     </form>
   </div>
 </body>
