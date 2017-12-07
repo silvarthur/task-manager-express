@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
         title: 'Express JS Task Manager',
         tasks: tasks 
       });
+      //res.json(tasks);
     }
   });
 });
@@ -26,7 +27,7 @@ router.post('/', function(req, res) {
 
   task.save(function(err, result) {
     if(err) {
-      res.json(err);
+      res.status(400).json(err);
     } else {
       res.json(result);
     }
