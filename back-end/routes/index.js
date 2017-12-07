@@ -24,13 +24,11 @@ router.post('/', function(req, res) {
   task.title = req.body.title;
   task.description = req.body.description;
 
-  task.save(function(err) {
+  task.save(function(err, result) {
     if(err) {
-      console.log(err);
-      return;
+      res.json(err);
     } else {
-      console.log('Task successfully saved!');
-      res.redirect('/');
+      res.json(result);
     }
   });
 });
