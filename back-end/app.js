@@ -5,10 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
 
-var expressValidator = require('express-validator');
-var flash = require('connect-flash');
+var flash = require('express.flash');
 var session = require('express-session');
 
 var index = require('./routes/index');
@@ -26,6 +24,7 @@ db.on('error', function(err) {
 });
 
 var app = express();
+var sessionStore = new session.MemoryStore; //???
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,42 +39,51 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//express session middleware
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
+/*
+SOURCE - Flash Messages:
 
-//express messages middleware
-app.use(require('connect-flash')());
+https://gist.github.com/brianmacarthur/a4e3e0093d368aa8e423
+*/
+
+app.use(cookieParser('secret'));
+app.use(session({ 
+  cookie: { maxAge:6000 }, 
+  store: sessionStore,
+  saveUninitialized: true,
+  resave: 'true',
+  secret: 'secret'
+}));
+app.use(flash());
+
+//custom flash middleware
 app.use(function(req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
+  //if there's a flash message in the session request, make it available in the response, then delete it
+  res.locals.sessionFlash = req.session.sessionFlash;
+  delete req.session.sessionFlash;
   next();
 });
 
-//express validator middleware
-app.use(expressValidator({
-  errorFormatter: function(param, msg, value) {
-    var namespace = param.split('.')
-    , root = namespace.shift()
-    , formParam = root;
+//route that creates a flash message using the express-flash module
+app.all('/express-flash', function(req, res) {
+  req.flash('success', 'This a message using the flash-express message');
+  res.redirect(301, '/');
+});
 
-    while(namespace.length) {
-      formParam += '[' + namespace.shift() + ']';
-    }
-
-    return {
-      param: formParam,
-      msg: msg,
-      value : value
-    };
+//route that creates a flash message using custom middleware
+app.all('/session-flash', function(req, res) {
+  req.session.sessionFlash = {
+    type: 'success', 
+    message: 'This is a flash message using custom middleware and express-session.'
   }
-}));
+  res.redirect(301, '/');
+});
+
+//route that incorporates flash messages from either req.flash(type) or res.locals.flash
+app.get('/', function(req, res) {
+  res.render('index', {expressFlash: req.flash('success'), sessionFlash: res.locals.sessionFlash});
+});
 
 app.use('/', index);
 app.use('/users', users);
