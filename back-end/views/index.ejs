@@ -9,7 +9,7 @@
     <div class='container'>
       <h1 id='main-header'>Welcome to <%= title %></h1>
 
-      <form method='POST', action="/">
+      <form method='POST', action="/task/add">
 
         <input id='title-field' type='text' class='form-control' name='title' placeholder='Title' >
 
@@ -51,7 +51,7 @@
     <script src='bower_components/bootstrap/dist/js/bootstrap.js'></script>
     <script>
       function goToTaskDetailsPage(id) {
-        window.location='/' + id;
+        window.location='/task/edit/' + id;
       }
     </script>
   </body>
