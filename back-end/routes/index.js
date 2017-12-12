@@ -12,7 +12,8 @@ router.get('/', function(req, res, next) {
     } else {
       res.render('index', {
         title: 'Express JS Task Manager',
-        tasks: tasks 
+        tasks: tasks,
+        errors: undefined
       });
       //res.json(tasks);
     }

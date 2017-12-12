@@ -5,19 +5,32 @@ var Task = require('../models/task');
 
 //ADD NEW TASK
 router.post('/add', function(req, res) {
-    var task = new Task();
-    task.title = req.body.title;
-    task.description = req.body.description;
-  
-    task.save(function(err, result) {
-      if(err) {
-        res.status(400).json(err);
-      } else {
-        res.redirect('/');
-        //res.json(result);
-      }
-    });
-  });
+    req.checkBody('title', 'Title is required!').notEmpty();
+    req.checkBody('description', 'Description is required!').notEmpty();
+
+    var errors = req.validationErrors();
+
+    if(errors) {
+        res.render('index', {
+            title: 'Express JS Task Manager', 
+            errors: errors
+        });
+    } else {
+        var task = new Task();
+        task.title = req.body.title;
+        task.description = req.body.description;
+      
+        task.save(function(err, result) {
+          if(err) {
+            res.status(400).json(err);
+          } else {
+            res.redirect('/');
+            //res.json(result);
+          }
+        });
+    }
+
+});
   
 //LOAD EDIT FORM
 router.get('/edit/:_id', function(req, res) {
