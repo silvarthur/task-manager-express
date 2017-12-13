@@ -9,6 +9,10 @@ var taskSchema = mongoose.Schema({
     description:{
         type: String,
         required: true
+    },
+    status: {
+        type: Boolean,
+        default: false
     }
 });
 

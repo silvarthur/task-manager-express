@@ -5,7 +5,6 @@ var Task = require('../models/task');
 
 //GET HOME PAGE
 router.get('/', function(req, res, next) {
-  console.log('home');
   Task.find({}, function(err, tasks){
     if(err) {
       console.log(err);
@@ -52,9 +51,6 @@ router.get('/:_id', function(req, res) {
 
 //EDIT TASK
 router.post('/:_id', function(req, res) {
-  console.log(req.body.title);
-  console.log(req.body.description);
-
   var task = {};
   task.title = req.body.title;
   task.description = req.body.description;
@@ -66,7 +62,6 @@ router.post('/:_id', function(req, res) {
       console.log(err);
       return;
     } else {
-      console.log('Task successfully edited!');
       res.redirect('/');
     }
   });
