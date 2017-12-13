@@ -8,6 +8,21 @@
   margin-bottom: 40px; 
 }
 
+.column {
+  float: left;
+  width: 50%; 
+}
+
+.column h1 {
+  text-align: center;
+}
+
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
 #title-field {
   margin-bottom: 10px;
   width: 100%;
