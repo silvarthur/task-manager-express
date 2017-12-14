@@ -1,8 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-var Task = require('../models/task.model');
+var mongoose = require('mongoose');
 
+var Task = require('../models/task.model');
+var controller = require('../controllers/task.controller');
+
+//GET ALL TASKS
+router.get('/', function(req, res) {
+    controller.getAllTasks(function(response) {
+        res.json(response);
+    });
+});
+
+/*
 //ADD NEW TASK
 router.post('/add', function(req, res) {
     var task = new Task();
@@ -53,5 +64,6 @@ router.post('/edit/:_id', function(req, res) {
         }
     });
 });
+*/
 
 module.exports = router;
