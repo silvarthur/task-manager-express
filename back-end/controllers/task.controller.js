@@ -4,29 +4,29 @@ var Task = require('../models/task.model');
 exports.getAllTasks = function(callback) {
     Task.find({}, function(error, tasks){
         if(error) {
-          callback({error: 'The tasks can not be returned!'});
+          callback({error: 'The tasks could not be returned!'});
         } else {
           callback(tasks);
         }
       });
 };
 
-exports.addNewTask = function(callback) {
+exports.addNewTask = function(req, callback) {
     var task = new Task();
     task.title = req.body.title;
     task.description = req.body.description;
   
-    task.save(function(err, result) {
+    task.save(function(err, res) {
         if(err) {
-            callback(err);
+            callback({err: 'The task could not be added!'});
         } else {
-            callback(200); //HTTP STATUS 200 OK
+            callback(201); //HTTP STATUS 200 OK
         }
     });
 };
 
 exports.updateTask = function(req, callback) {
-    Task.findOne({_id: req.params._id, function(err, task) {
+    Task.findById(req.params.id, function(err, task) {
         if(err) {
             res.json({err: 'Task could not be found!'});
         } else {
@@ -41,5 +41,7 @@ exports.updateTask = function(req, callback) {
                 }
             });
         }
-    }});
+    });
 };
+
+//REMOVE TASK
