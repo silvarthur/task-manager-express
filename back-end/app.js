@@ -5,14 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
 
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var task = require('./routes/task');
 
 mongoose.connect('mongodb://localhost/task_manager_db');
 var db = mongoose.connection;
@@ -78,7 +77,7 @@ app.use(expressValidator({
 }));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/task', task)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
