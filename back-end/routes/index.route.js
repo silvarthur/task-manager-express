@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var Task = require('../models/task');
+var Task = require('../models/task.model');
 
 //GET HOME PAGE
 router.get('/', function(req, res, next) {
@@ -11,8 +11,7 @@ router.get('/', function(req, res, next) {
     } else {
       res.render('index', {
         title: 'Express JS Task Manager',
-        tasks: tasks,
-        errors: undefined
+        tasks: tasks
       });
       //res.json(tasks);
     }
