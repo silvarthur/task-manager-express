@@ -9,14 +9,6 @@ export class TaskService {
     console.log('Task service initialized...')
   }
 
-  /*
-  getAllTaks() {
-    return this.http.
-      get('localhost:3000/task').
-      map(res => res.json()).;
-  }
-  */
-
   getAllTasks() {
     return this.http
     .get('http://localhost:3000/task')
