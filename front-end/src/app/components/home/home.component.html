@@ -18,13 +18,13 @@
       <div class='column'>
         <h1>Open Tasks</h1>
           <div class='row' *ngFor='let task of tasks'>
-              <div class="card card-inverse" style="background-color: rgb(179, 179, 179); margin-right:5%; border-radius:10px">
+              <div id='open-task' class="card card-inverse">
                 <div class="card-block">
                   <h3 style='padding-top:10px; padding-left:10px'>{{task.title}}</h3>
                   <p style='padding-top:10px; padding-left:10px'>{{ task.description }}</p>
                       
                   <button id='mark-as-done-button' class='btn btn-primary'>Mark as Done</button>
-                  <button id='edit--button' class='btn btn-primary'>Edit</button>
+                  <button id='edit-button' class='btn btn-primary'>Edit</button>
                 </div>
               </div>
           </div> 
@@ -33,7 +33,7 @@
       <div class='column'>
         <h1>Finished Tasks</h1>
           <div class='row' *ngFor='let task of tasks'>
-              <div class="card card-inverse" style="background-color: rgb(179, 179, 179); margin-left:5%; border-radius:10px">
+              <div id='finished-task' class='card card-inverse'>
                   <div class="card-block">
                     <h3 style='padding-top:10px; padding-left:10px'>{{task.title}}</h3>
                     <p style='padding-top:10px; padding-left:10px'>{{ task.description }}</p>

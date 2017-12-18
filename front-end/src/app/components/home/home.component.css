@@ -18,11 +18,27 @@
     clear: both;
 }
 
+#open-task {
+    width: 90%; 
+    margin: 0 auto;
+    border-radius:10px;
+    margin-bottom: 10px;
+    background-color: rgb(179, 179, 179);
+}
+
+#finished-task {
+    width: 90%;
+    margin: 0 auto;
+    border-radius:10px;
+    margin-bottom: 10px;
+    background-color: rgb(179, 179, 179);
+}
+
 #title-field {
     margin-bottom: 10px;
     width: 100%;
 }
-  
+
 #description-field {
     margin-bottom: 10px;
     width: 100%;
