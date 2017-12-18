@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../services/task.service'
+import { TaskService } from '../../services/task.service';
+import { StatusPipe } from '../../status.pipe'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  //pipes: [StatusPipe]
 })
 export class HomeComponent implements OnInit {
   tasks: any;
