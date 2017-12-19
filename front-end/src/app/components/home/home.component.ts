@@ -22,6 +22,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  addNewTask() {
+    console.log('Adding New Task!');
+  }
+
   ngOnInit() { 
     this.getAllTasks();
   }
