@@ -17,7 +17,7 @@
 
       <div class='column'>
         <h1>Open Tasks</h1>
-          <div class='row' *ngFor='let task of tasks'>
+          <div class='row' *ngFor='let task of tasks | status:false'>
               <div id='open-task' class="card card-inverse">
                 <div class="card-block">
                   <h3 style='padding-top:10px; padding-left:10px'>{{task.title}}</h3>
@@ -32,7 +32,7 @@
 
       <div class='column'>
         <h1>Finished Tasks</h1>
-          <div class='row' *ngFor='let task of tasks'>
+          <div class='row' *ngFor='let task of tasks | status:true'>
               <div id='finished-task' class='card card-inverse'>
                   <div class="card-block">
                     <h3 style='padding-top:10px; padding-left:10px'>{{task.title}}</h3>

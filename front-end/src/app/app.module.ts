@@ -7,12 +7,14 @@ import { HomeComponent } from './components/home/home.component';
 import { TaskComponent } from './components/task/task.component';
 
 import { TaskService } from './services/task.service';
+import { StatusPipe } from './status.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TaskComponent
+    TaskComponent,
+    StatusPipe
   ],
   imports: [
     BrowserModule,
