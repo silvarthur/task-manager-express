@@ -9,7 +9,7 @@ import { StatusPipe } from '../../status.pipe'
   //pipes: [StatusPipe]
 })
 export class HomeComponent implements OnInit {
-  tasks: any;
+  tasks: any = [];
 
   constructor(private taskService: TaskService) { }
 
