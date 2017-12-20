@@ -8,11 +8,11 @@
       <h1 id='main-header'>Welcome to MEAN Task Manager</h1>
 
       <form>
-        <input id='title-field' type='text' class='form-control' name='title' placeholder='Title' >
+        <input id='title-field' type='text' class='form-control' name='title' placeholder='Title' #title>
 
-        <input id='description-field' type='text' class='form-control' name='description' placeholder='Description'>
+        <input id='description-field' type='text' class='form-control' name='description' placeholder='Description' #description>
 
-        <button id='submit-button' type='button' class='btn btn-primary' (click)='addNewTask()'>Add New Task</button>
+        <button id='submit-button' type='button' class='btn btn-primary' (click)='addNewTask(title.value, description.value)'>Add New Task</button>
       </form>
 
       <div class='column'>

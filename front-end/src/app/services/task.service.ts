@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -12,6 +12,18 @@ export class TaskService {
   getAllTasks() {
     return this.http
     .get('http://localhost:3000/task')
+    .map((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  createTask(task) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json')
+
+    return this.http
+    .post('http://localhost:3000/task', JSON.stringify({task}), {
+      headers: headers
+    })
     .map((response: Response) => response.json())
     .catch(this.handleError);
   }

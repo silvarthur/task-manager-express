@@ -13,14 +13,12 @@ router.get('/task', function(req, res) {
 });
 
 router.post('/task', function(req, res) {
-    console.log(req.body);
     controller.addNewTask(req, function(response) {
         res.json(response);
     });
 });
 
 router.put('/task/:id', function(req, res) {
-    console.log('***');
     controller.updateTask(req, function(response) {
         res.json(response);
     });

@@ -13,14 +13,15 @@ exports.getAllTasks = function(callback) {
 
 exports.addNewTask = function(req, callback) {
     var task = new Task();
-    task.title = req.body.title;
-    task.description = req.body.description;
+
+    task.title = req.body.task.title;
+    task.description = req.body.task.description;
   
     task.save(function(err, res) {
         if(err) {
             callback({err: 'The task could not be added!'});
         } else {
-            callback(201); //HTTP STATUS 200 OK
+            callback(res);
         }
     });
 };
@@ -43,5 +44,3 @@ exports.updateTask = function(req, callback) {
         }
     });
 };
-
-//REMOVE TASK
