@@ -39,6 +39,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  markTaskAsDone() {
+    this.taskService.markTaskAsDone();
+  }
+
   ngOnInit() { 
     this.getAllTasks();
   }
