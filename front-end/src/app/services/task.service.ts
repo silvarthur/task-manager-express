@@ -31,8 +31,6 @@ export class TaskService {
   }
 
   markTaskAsDone(id) {
-    console.log("From the service: Moving task to the list of finished tasks...");
-
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 

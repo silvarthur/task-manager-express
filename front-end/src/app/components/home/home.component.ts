@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     this.taskService.getAllTasks()
     .subscribe(
       result => this.tasks = result,
-      error => console.log('getAllTasks - Error: ' + error)
+      error => console.log('getAllTasks - Error: ' + error),
     );
   }
 
@@ -30,9 +30,7 @@ export class HomeComponent implements OnInit {
 
     this.taskService.createTask(task)
     .subscribe(
-      result => {
-        this.tasks = this.tasks.concat(result)
-      },
+      result => this.tasks = this.tasks.concat(result),
       error => console.log('createTask - Error: ' + error)
     );
   }
@@ -40,7 +38,14 @@ export class HomeComponent implements OnInit {
   markTaskAsDone(id) {
     this.taskService.markTaskAsDone(id)
     .subscribe(
-      result => console.log(result),
+      result => {
+        for (var i = 0; i <  this.tasks.length; i++) {
+          if(this.tasks[i]._id === id) {
+            this.tasks.splice(i,1);
+            this.tasks = this.tasks.concat(result);
+          }
+       }
+      },
       error => console.log('markTaskAsDone - Error: ' + error)
     );
   }
