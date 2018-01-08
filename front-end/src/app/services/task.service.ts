@@ -30,49 +30,22 @@ export class TaskService {
     .catch(this.handleError);
   }
 
-  markTaskAsDone() {
+  markTaskAsDone(id) {
     console.log("From the service: Moving task to the list of finished tasks...");
-  }
 
-  /*
-  editTask(task) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http
     .put(
-      'http://localhost:3000/task',
-      JSON.stringify({task}),
+      ('http://localhost:3000/task/markAsDone/' + id),
       {headers: headers}
     )
     .map((response: Response) => response.json())
     .catch(this.handleError);
   }
-  */
 
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }
 }
-
-/*
-  /*
-  exports.updateTask = function(req, callback) {
-    Task.findById(req.params.id, function(err, task) {
-        if(err) {
-            res.json({err: 'Task could not be found!'});
-        } else {
-            if(req.body.title) task.title = req.body.title;
-            if(req.body.description) task.description = req.body.description;
-
-            task.save(function(error, task) {
-                if(error) {
-                    callback({error: 'The could not be saved!'});
-                } else {
-                    callback(task);
-                }
-            });
-        }
-    });
-};
-*/

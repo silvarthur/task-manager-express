@@ -23,7 +23,7 @@
                   <h3 style='padding-top:10px; padding-left:10px'>{{task.title}}</h3>
                   <p style='padding-top:10px; padding-left:10px'>{{ task.description }}</p>
                       
-                  <button id='mark-as-done-button' class='btn btn-primary' (click)='markTaskAsDone()'>Mark as Done</button>
+                  <button id='mark-as-done-button' class='btn btn-primary' (click)='markTaskAsDone(task._id)'>Mark as Done</button>
                   <button id='edit-button' class='btn btn-primary'>Edit</button>
                 </div>
               </div>

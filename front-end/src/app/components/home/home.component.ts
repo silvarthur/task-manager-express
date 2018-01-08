@@ -17,8 +17,7 @@ export class HomeComponent implements OnInit {
     this.taskService.getAllTasks()
     .subscribe(
       result => this.tasks = result,
-      error => console.log('getAllTasks - Error: ' + error),
-      () => console.log(this.tasks)
+      error => console.log('getAllTasks - Error: ' + error)
     );
   }
 
@@ -32,15 +31,18 @@ export class HomeComponent implements OnInit {
     this.taskService.createTask(task)
     .subscribe(
       result => {
-        this.tasks = this.tasks.concat(result),
-        console.log(this.tasks)
+        this.tasks = this.tasks.concat(result)
       },
       error => console.log('createTask - Error: ' + error)
     );
   }
 
-  markTaskAsDone() {
-    this.taskService.markTaskAsDone();
+  markTaskAsDone(id) {
+    this.taskService.markTaskAsDone(id)
+    .subscribe(
+      result => console.log(result),
+      error => console.log('markTaskAsDone - Error: ' + error)
+    );
   }
 
   ngOnInit() { 
