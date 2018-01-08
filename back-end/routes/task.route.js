@@ -18,8 +18,14 @@ router.post('/task', function(req, res) {
     });
 });
 
-router.put('/task/:id', function(req, res) {
+router.put('/task/edit/:id', function(req, res) {
     controller.updateTask(req, function(response) {
+        res.json(response);
+    });
+});
+
+router.put('/task/markAsDone/:id', function(req, res) {
+    controller.markTaskAsDone(req, function(response) {
         res.json(response);
     });
 });

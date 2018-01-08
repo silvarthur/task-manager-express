@@ -36,7 +36,25 @@ exports.updateTask = function(req, callback) {
 
             task.save(function(error, task) {
                 if(error) {
-                    callback({error: 'The could not be saved!'});
+                    callback({error: 'The could not be updated!'});
+                } else {
+                    callback(task);
+                }
+            });
+        }
+    });
+};
+
+exports.markTaskAsDone = function(req, callback) {
+    Task.findById(req.params.id, function(err, task) {
+        if(err) {
+            res.json({err: 'Task could not be found!'});
+        } else {
+            task.status = true;
+
+            task.save(function(error, task) {
+                if(error) {
+                    callback({error: 'The could not be updated!'});
                 } else {
                     callback(task);
                 }
