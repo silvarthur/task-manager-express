@@ -24,4 +24,10 @@ router.put('/task/:id', function(req, res) {
     });
 });
 
+router.delete('/task/:id', function(req, res) {
+    controler.removeTask(req, function(response) {
+        res.json(response);
+    });
+});
+
 module.exports = router;

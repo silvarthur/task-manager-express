@@ -44,3 +44,17 @@ exports.updateTask = function(req, callback) {
         }
     });
 };
+
+exports.removeTask = function(req, callback) {
+    Task.findById(req.params.id, function(err, task) {
+        if(err) {
+            res.json({err: 'Task could not be found!'});
+        } else {
+            task.remove(function(error) {
+                if(error) {
+                    callback({error:'Task could not be removed'})
+                }
+            });
+        }
+    });
+};
