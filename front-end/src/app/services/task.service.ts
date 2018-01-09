@@ -31,8 +31,6 @@ export class TaskService {
   }
 
   removeTask(id) {
-    console.log('Entrou no serviço...');
-  
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 

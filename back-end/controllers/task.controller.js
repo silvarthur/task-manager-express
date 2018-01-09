@@ -48,14 +48,19 @@ exports.updateTask = function(req, callback) {
 exports.removeTask = function(req, callback) {
     Task.findById(req.params.id, function(err, task) {
         if(err) {
-            res.json({err: 'Task could not be found!'});
+            res.sendStatus(500);
         } else {
-            console.log('ENTROU AQUIIII!');
-            task.remove(function(error) {
-                if(error) {
-                    callback({error:'Task could not be removed'});
-                }
-            });
+            if (task) {
+                task.remove(function(error) {
+                    if(error) {
+                        callback({error:'Task could not be removed'});
+                    } else {
+                        callback({task});
+                    }
+                });
+            } else {
+                res.sendStatus(404).json({err: 'Task could not be found!'});
+            }
         }
     });
 };

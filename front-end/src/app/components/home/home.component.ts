@@ -32,24 +32,19 @@ export class HomeComponent implements OnInit {
     this.taskService.createTask(task)
     .subscribe(
       result => {
-        this.tasks = this.tasks.concat(result),
-        console.log(this.tasks)
+        this.tasks = this.tasks.concat(result)
       },
       error => console.log('createTask - Error: ' + error)
     );
   }
 
   removeTask(id) {
-    console.log('ENTROU NA FUNÇÃO!');
-
     this.taskService.removeTask(id)
     .subscribe(
       result => {
-        console.log('ENTROU NO RESULT!');
         for (var i = 0; i < this.tasks.length; i++) {
           if(this.tasks[i]._id === id) {
-            console.log('ENTROU DENTRO DO IF DO RESULT!');
-            this.tasks.splice(i,1);
+            this.tasks = this.tasks.filter(item => item != this.tasks[i]);
           }
         }
       },
