@@ -38,7 +38,7 @@
                     <h3 style='padding-top:10px; padding-left:10px'>{{task.title}}</h3>
                     <p style='padding-top:10px; padding-left:10px'>{{ task.description }}</p>
 
-                    <button id='remove-button' class='btn btn-primary'>Remove</button>
+                    <button id='remove-button' class='btn btn-primary' (click)='removeTask(task._id)'>Remove</button>
                   </div>
                 </div>
           </div>

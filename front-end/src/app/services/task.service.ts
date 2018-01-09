@@ -18,12 +18,29 @@ export class TaskService {
 
   createTask(task) {
     var headers = new Headers();
-    headers.append('Content-Type', 'application/json')
+    headers.append('Content-Type', 'application/json');
 
     return this.http
-    .post('http://localhost:3000/task', JSON.stringify({task}), {
-      headers: headers
-    })
+    .post(
+      'http://localhost:3000/task', 
+      JSON.stringify({task}), 
+      {headers: headers}
+    )
+    .map((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  removeTask(id) {
+    console.log('Entrou no serviço...');
+  
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http
+    .delete(
+      ('http://localhost:3000/task/' + id),
+      {headers: headers}
+    )
     .map((response: Response) => response.json())
     .catch(this.handleError);
   }

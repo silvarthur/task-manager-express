@@ -50,9 +50,10 @@ exports.removeTask = function(req, callback) {
         if(err) {
             res.json({err: 'Task could not be found!'});
         } else {
+            console.log('ENTROU AQUIIII!');
             task.remove(function(error) {
                 if(error) {
-                    callback({error:'Task could not be removed'})
+                    callback({error:'Task could not be removed'});
                 }
             });
         }
