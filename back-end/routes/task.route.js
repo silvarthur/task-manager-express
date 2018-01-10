@@ -30,4 +30,10 @@ router.put('/task/markAsDone/:id', function(req, res) {
     });
 });
 
+router.delete('/task/:id', function(req, res) {
+    controller.removeTask(req, function(response) {
+        res.json(response);
+    });
+});
+
 module.exports = router;

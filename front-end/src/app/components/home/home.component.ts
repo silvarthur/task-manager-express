@@ -50,6 +50,20 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  removeTask(id) {
+    this.taskService.removeTask(id)
+    .subscribe(
+      result => {
+        for (var i = 0; i < this.tasks.length; i++) {
+          if(this.tasks[i]._id === id) {
+            this.tasks = this.tasks.filter(item => item != this.tasks[i]);
+          }
+        }
+      },
+      error => console.log('removeTask - Error: ' + error)
+    );
+  }
+
   ngOnInit() { 
     this.getAllTasks();
   }

@@ -5,9 +5,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class TaskService {
-  constructor(private http: Http) { 
-    console.log('Task service initialized...')
-  }
+  constructor(private http: Http) { }
 
   getAllTasks() {
     return this.http
@@ -22,8 +20,8 @@ export class TaskService {
 
     return this.http
     .post(
-      'http://localhost:3000/task',
-      JSON.stringify({task}),
+      'http://localhost:3000/task', 
+      JSON.stringify({task}), 
       {headers: headers}
     )
     .map((response: Response) => response.json())
@@ -37,6 +35,19 @@ export class TaskService {
     return this.http
     .put(
       ('http://localhost:3000/task/markAsDone/' + id),
+      {headers: headers}
+    )
+    .map((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
+  removeTask(id) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http
+    .delete(
+      ('http://localhost:3000/task/' + id),
       {headers: headers}
     )
     .map((response: Response) => response.json())

@@ -62,3 +62,23 @@ exports.markTaskAsDone = function(req, callback) {
         }
     });
 };
+
+exports.removeTask = function(req, callback) {
+    Task.findById(req.params.id, function(err, task) {
+        if(err) {
+            res.sendStatus(500);
+        } else {
+            if (task) {
+                task.remove(function(error) {
+                    if(error) {
+                        callback({error:'Task could not be removed'});
+                    } else {
+                        callback({task});
+                    }
+                });
+            } else {
+                res.sendStatus(404).json({err: 'Task could not be found!'});
+            }
+        }
+    });
+};
