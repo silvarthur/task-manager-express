@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { TaskComponent } from './components/task/task.component';
 
 import { TaskService } from './services/task.service';
 import { StatusPipe } from './status.pipe';
@@ -15,7 +14,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,
     HomeComponent,
-    TaskComponent,
     StatusPipe
   ],
   imports: [
