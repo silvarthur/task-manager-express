@@ -41,6 +41,19 @@ export class TaskService {
     .catch(this.handleError);
   }
 
+  editTask(task) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http
+    .put(
+      ('http://localhost:3000/task/edit/' + task._id),
+      JSON.stringify({task}),
+      {headers: headers})
+    .map((response: Response) => response.json())
+    .catch(this.handleError);
+  }
+
   removeTask(id) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');

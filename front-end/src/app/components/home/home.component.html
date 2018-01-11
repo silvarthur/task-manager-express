@@ -24,7 +24,7 @@
                   <p style='padding-top:10px; padding-left:10px'>{{ task.description }}</p>
                       
                   <button id='mark-as-done-button' class='btn btn-primary' (click)='markTaskAsDone(task._id)'>Mark as Done</button>
-                  <button id='edit-button' class='btn btn-primary' (click)='showEditModal(editModal)'>Edit</button>
+                  <button id='edit-button' class='btn btn-primary' (click)='showEditModal(task, editModal)'>Edit</button>
                 </div>
               </div>
           </div> 
@@ -53,11 +53,11 @@
   </div>
   <div class='modal-body'>
     <form>
-        <input type='text' class='form-control' style='margin-bottom: 10px'>
-        <input type='text' class='form-control' style='margin-bottom: 10px'>
+        <input type='text' class='form-control' style='margin-bottom: 10px' value='{{ task.title }}' #newTitle>
+        <input type='text' class='form-control' style='margin-bottom: 10px' value='{{ task.description }}' #newDescription>
         
-        <button type='button' class='btn btn-primary'>Confirm</button>
-        <button type='button' class='btn btn-primary'>Cancel</button>
+        <button type='button' class='btn btn-primary' (click)='editTask(task, newTitle.value, newDescription.value)'>Confirm</button>
+        <button type='button' class='btn btn-primary' (click)='closeEditModal()'>Cancel</button>
     </form>
   </div>
 </ng-template>

@@ -11,6 +11,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeComponent implements OnInit {
   tasks: Task[] = [];
+  task: Task;
+  editModalRef;
 
   constructor(private taskService: TaskService, private modalService: NgbModal) { }
 
@@ -51,8 +53,22 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  showEditModal(modal) {
-    this.modalService.open(modal);
+  showEditModal(task: Task, modal) {
+    this.task = task;
+    this.editModalRef = this.modalService.open(modal);
+  }
+
+  editTask(task: Task, newTitle, newDescription) {
+    task.title = newTitle;
+    task.description = newDescription;
+
+    this.taskService.editTask(task)
+    .subscribe(
+      result => console.log(result), 
+      error => console.log('editTask - Error: ' + error)
+    );
+
+    this.closeEditModal();
   }
 
   removeTask(id) {
@@ -67,6 +83,10 @@ export class HomeComponent implements OnInit {
       },
       error => console.log('removeTask - Error: ' + error)
     );
+  }
+
+  closeEditModal() {
+    this.editModalRef.close();
   }
 
   ngOnInit() { 
