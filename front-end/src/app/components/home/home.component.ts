@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
-import { StatusPipe } from '../../status.pipe'
-import { Task } from '../../models/task'
+import { StatusPipe } from '../../status.pipe';
+import { Task } from '../../models/task';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { Task } from '../../models/task'
 export class HomeComponent implements OnInit {
   tasks: Task[] = [];
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private modalService: NgbModal) { }
 
   getAllTasks() {
     this.taskService.getAllTasks()
@@ -48,6 +49,10 @@ export class HomeComponent implements OnInit {
       },
       error => console.log('markTaskAsDone - Error: ' + error)
     );
+  }
+
+  showEditModal(modal) {
+    this.modalService.open(modal);
   }
 
   removeTask(id) {

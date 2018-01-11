@@ -9,6 +9,8 @@ import { TaskComponent } from './components/task/task.component';
 import { TaskService } from './services/task.service';
 import { StatusPipe } from './status.pipe';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { StatusPipe } from './status.pipe';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    NgbModule.forRoot()
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
