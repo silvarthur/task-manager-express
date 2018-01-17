@@ -8,7 +8,9 @@ import { HomeComponent } from './components/home/home.component';
 import { TaskService } from './services/task.service';
 import { StatusPipe } from './status.pipe';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { Routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    Routing
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
