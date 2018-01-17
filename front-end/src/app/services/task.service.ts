@@ -48,7 +48,7 @@ export class TaskService {
     return this.http
     .put(
       ('http://localhost:3000/task/edit/' + task._id),
-      JSON.stringify({task}),
+      JSON.stringify(task),
       {headers: headers})
     .map((response: Response) => response.json())
     .catch(this.handleError);

@@ -53,6 +53,9 @@ exports.markTaskAsDone = function(req, res) {
 };
 
 exports.updateTask = function(req, res) {
+
+    console.log('REQ:', req.body)
+
     Task.findById(req.params.id, function(err, task) {
         if(err) {
             res.sendStatus(500);
