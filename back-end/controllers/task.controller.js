@@ -1,36 +1,36 @@
 var mongoose = require('mongoose');
 var Task = require('../models/task.model');
 
-exports.getAllTasks = function(callback) {
+exports.getAllTasks = function(req, res) {
     Task.find({}, function(error, tasks){
         if(error) {
-          res.sendStatus(500).res({error: 'The tasks could not be returned!'});
+          res.status(500).json({error: 'The tasks could not be returned!'});
         } else {
           if(tasks) {
-            callback(tasks);
+            res.json(tasks);
           } else {
-            res.sendStatus(200).res('OK');
+            res.status(200).json('OK');
           }
         }
       });
 };
 
-exports.addNewTask = function(req, callback) {
+exports.addNewTask = function(req, res) {
     var task = new Task();
 
     task.title = req.body.task.title;
     task.description = req.body.task.description;
   
-    task.save(function(err, res) {
+    task.save(function(err, response) {
         if(err) {
-            res.sendStatus(500).res({err: 'The task could not be added!'});
+            res.status(500).json({err: 'The task could not be added!'});
         } else {
-            callback(res);
+            res.json(response);
         }
     });
 };
 
-exports.markTaskAsDone = function(req, callback) {
+exports.markTaskAsDone = function(req, res) {
     Task.findById(req.params.id, function(err, task) {
         if(err) {
             res.sendStatus(500);
@@ -40,9 +40,9 @@ exports.markTaskAsDone = function(req, callback) {
                 
                 task.save(function(error, task) {
                     if(error) {
-                        callback({error: 'The could not be updated!'});
+                        res.json({error: 'The could not be updated!'});
                     } else {
-                        callback(task);
+                        res.json(task);
                     }
                 });
             } else {
@@ -52,7 +52,7 @@ exports.markTaskAsDone = function(req, callback) {
     });
 };
 
-exports.updateTask = function(req, callback) {
+exports.updateTask = function(req, res) {
     Task.findById(req.params.id, function(err, task) {
         if(err) {
             res.sendStatus(500);
@@ -63,19 +63,19 @@ exports.updateTask = function(req, callback) {
     
                 task.save(function(error, task) {
                     if(error) {
-                        callback({error: 'The could not be updated!'});
+                        res.json({error: 'The could not be updated!'});
                     } else {
-                        callback(task);
+                        res.json(task);
                     }
                 });
             } else {
-                res.sendStatus(404).json({err: 'Task could not be found!'});
+                res.status(404).json({err: 'Task could not be found!'});
             }
         }
     });
 };
 
-exports.removeTask = function(req, callback) {
+exports.removeTask = function(req, res) {
     Task.findById(req.params.id, function(err, task) {
         if(err) {
             res.sendStatus(500);
@@ -83,13 +83,13 @@ exports.removeTask = function(req, callback) {
             if(task) {
                 task.remove(function (error) {
                     if(error) {
-                        callback({error:'Task could not be removed'});
+                        res.json({error:'Task could not be removed'});
                     } else {
-                        callback({task});
+                        res.json({task});
                     }
                 });
             } else {
-                res.sendStatus(404).json({err: 'Task could not be found!'});
+                res.status(404).json({err: 'Task could not be found!'});
             }
         }
     });

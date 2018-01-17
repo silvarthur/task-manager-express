@@ -3,6 +3,7 @@ import { TaskService } from '../../services/task.service';
 import { StatusPipe } from '../../status.pipe';
 import { Task } from '../../models/task';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,9 @@ export class HomeComponent implements OnInit {
   task: Task;
   editModalRef;
 
-  constructor(private taskService: TaskService, private modalService: NgbModal) { }
+  constructor(private taskService: TaskService,
+    private modalService: NgbModal,
+    private app: AppComponent) { }
 
   getAllTasks() {
     this.taskService.getAllTasks()
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit {
             this.tasks.splice(i,1);
             this.tasks = this.tasks.concat(result);
           }
-       }
+        }
       },
       error => console.log('markTaskAsDone - Error: ' + error)
     );
@@ -70,7 +73,7 @@ export class HomeComponent implements OnInit {
 
     this.closeEditModal();
   }
-
+    
   removeTask(id) {
     this.taskService.removeTask(id)
     .subscribe(
